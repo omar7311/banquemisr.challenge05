@@ -1,4 +1,4 @@
-package com.example.banquemisrchallenge05.ui.theme
+package com.example.banquemisrchallenge05.view.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
