@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.banquemisrchallenge05.R
+import com.example.banquemisrchallenge05.view.ui.navigation.NavGraph
 import com.example.banquemisrchallenge05.view.ui.theme.Banquemisrchallenge05Theme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +22,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Banquemisrchallenge05Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val controller= rememberNavController()
+                NavGraph(controller,getString(R.string.api_key))
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun GreetingPreview() {
-    Banquemisrchallenge05Theme {
-        Greeting("Android")
-    }
-}
