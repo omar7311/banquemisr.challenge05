@@ -2,6 +2,7 @@ package com.example.banquemisrchallenge05.view.ListScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,13 +31,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.banquemisrchallenge05.model.remote.Movie
+import com.example.banquemisrchallenge05.view.ui.navigation.Screens
 
 @Composable
 fun MovieItem(movie:Movie,navController: NavHostController){
     val painter= rememberAsyncImagePainter(
         model = "https://image.tmdb.org/t/p/w500"+movie.poster_path
     )
-    Card(modifier =Modifier.width(200.dp).height(315.dp).padding(4.dp), shape = RoundedCornerShape(10.dp),
+    Card(modifier =Modifier.width(200.dp).height(315.dp).padding(4.dp).clickable {
+        navController.navigate("${Screens.MovieDetails.route}/${movie.id}")
+    }, shape = RoundedCornerShape(10.dp),
 
     )  {
        Image(painter = painter,contentDescription = null, contentScale = ContentScale.Crop,
