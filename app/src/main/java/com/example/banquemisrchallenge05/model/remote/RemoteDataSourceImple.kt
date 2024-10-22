@@ -23,4 +23,10 @@ class RemoteDataSourceImple():IRemoteDataSource{
         }
     }
 
+    override fun getMovieDetails(key: String, id: Long): Flow<MovieDetails> {
+        return flow {
+            emit(apiServices.getMovieDetails(id,key))
+        }
+    }
+
 }

@@ -3,8 +3,8 @@ package com.example.banquemisrchallenge05.model.repo
 import com.example.banquemisrchallenge05.model.local.ILocalDataSource
 import com.example.banquemisrchallenge05.model.remote.IRemoteDataSource
 import com.example.banquemisrchallenge05.model.remote.Movie
+import com.example.banquemisrchallenge05.model.remote.MovieDetails
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
 class RepositoryImple(private val remote: IRemoteDataSource, private val local: ILocalDataSource) :
     IRepository {
@@ -18,5 +18,9 @@ class RepositoryImple(private val remote: IRemoteDataSource, private val local: 
 
     override fun getUpcomingMovies(key: String): Flow<List<Movie>> {
         return remote.getUpcomingMovies(key)
+    }
+
+    override fun getMovieDetails(key: String, id: Long): Flow<MovieDetails> {
+        return remote.getMovieDetails(key, id)
     }
 }

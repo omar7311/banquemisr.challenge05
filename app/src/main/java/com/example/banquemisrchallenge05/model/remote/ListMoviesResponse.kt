@@ -5,7 +5,6 @@ data class ListMoviesResponse(
     var results:List<Movie>
 )
 
-
 data class Movie(
     var id: Long,
     var title: String,

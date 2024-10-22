@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,8 +13,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.example.banquemisrchallenge05.view.ui.navigation.Screens
-import com.example.banquemisrchallenge05.view.ui.uistate.UiState
+import com.example.banquemisrchallenge05.view.ui.uistate.ListScreenUiState
 import com.example.banquemisrchallenge05.viewmodel.movieslistVM.MoviesListViewModel
 
 
@@ -33,18 +30,18 @@ fun PopularScreen(navController: NavHostController, moviesListViewModel: MoviesL
         Box(modifier = Modifier.fillMaxSize().padding(innerPadding)
         ){
             when(popularList){
-                is UiState.Loading->{ }
-                is UiState.Success->{
+                is ListScreenUiState.Loading->{ }
+                is ListScreenUiState.Success->{
                     LazyHorizontalGrid(
                         rows = GridCells.Fixed(2),
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        itemsIndexed((popularList as UiState.Success).movies) { _, movie ->
+                        itemsIndexed((popularList as ListScreenUiState.Success).movies) { _, movie ->
                             MovieItem(movie, navController)
                         }
                     }
                 }
-                is UiState.Failure->{ }
+                is ListScreenUiState.Failure->{ }
             }
         }
 

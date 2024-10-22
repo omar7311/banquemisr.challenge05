@@ -13,8 +13,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.example.banquemisrchallenge05.view.ui.navigation.Screens
-import com.example.banquemisrchallenge05.view.ui.uistate.UiState
+import com.example.banquemisrchallenge05.view.ui.uistate.ListScreenUiState
 import com.example.banquemisrchallenge05.viewmodel.movieslistVM.MoviesListViewModel
 
 
@@ -30,18 +29,18 @@ fun UpcomingScreen(navController: NavHostController, moviesListViewModel: Movies
     ) { innerPadding->
         Box(modifier = Modifier.fillMaxSize().padding(innerPadding)){
             when(upcomingList){
-                is UiState.Loading->{ }
-                is UiState.Success->{
+                is ListScreenUiState.Loading->{ }
+                is ListScreenUiState.Success->{
                     LazyHorizontalGrid(
                         rows = GridCells.Fixed(2),
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        itemsIndexed((upcomingList as UiState.Success).movies) { _, movie ->
+                        itemsIndexed((upcomingList as ListScreenUiState.Success).movies) { _, movie ->
                             MovieItem(movie, navController)
                         }
                     }
                 }
-                is UiState.Failure->{ }
+                is ListScreenUiState.Failure->{ }
             }
         }
 
