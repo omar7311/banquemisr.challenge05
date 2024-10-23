@@ -76,5 +76,27 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     // Coil for image loading
     implementation(libs.coil.compose)
+    // AndroidX and Robolectric
+    testImplementation (libs.androidx.junit.ktx)
+    //noinspection UseTomlInstead
+    testImplementation ("androidx.test:core-ktx:1.6.1")
+    testImplementation (libs.robolectric)
+    //kotlinx-coroutines
+    implementation (libs.kotlinx.coroutines.android)
+    testImplementation (libs.kotlinx.coroutines.test)
+    androidTestImplementation (libs.kotlinx.coroutines.test)
+    // Testing dependencies
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // Unit Testing Libraries
+    testImplementation("org.hamcrest:hamcrest-all:1.3")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.robolectric:robolectric:4.13")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }

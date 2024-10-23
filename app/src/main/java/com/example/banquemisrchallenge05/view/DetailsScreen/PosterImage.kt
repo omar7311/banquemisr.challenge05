@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,13 +25,22 @@ fun PosterImage(posterPath:String,backdropPath:String){
     val backdropImage= rememberAsyncImagePainter(
         model = "https://image.tmdb.org/t/p/w500"+backdropPath
     )
-    Box(modifier = Modifier.fillMaxWidth().height(300.dp)){
-        Image(painter =backdropImage ,contentDescription = null, contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize())
-        Image(painter =posterImage ,contentDescription = null, contentScale = ContentScale.Crop,
-            modifier = Modifier.size(width = 150.dp, height = 250.dp).align(Alignment.CenterStart)
-                .padding(start = 16.dp))
-
+    Card(modifier = Modifier.fillMaxWidth().height(250.dp).padding(8.dp)
+        , shape = RoundedCornerShape(10.dp), elevation = CardDefaults.cardElevation(12.dp)){
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = backdropImage,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+            Image(
+                painter = posterImage, contentDescription = null, contentScale = ContentScale.Crop,
+                modifier = Modifier.size(width = 120.dp, height = 180.dp)
+                    .align(Alignment.CenterStart)
+                    .padding(start = 12.dp)
+            )
+        }
     }
 
 }
