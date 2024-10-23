@@ -1,9 +1,11 @@
 package com.example.banquemisrchallenge05.model.remote
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "movie_details")
 data class MovieDetails(
+    @PrimaryKey
     var id: Long,
     var original_title: String,
     var release_date: String,
