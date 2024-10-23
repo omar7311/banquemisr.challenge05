@@ -21,6 +21,7 @@ fun BottomNavBar(navController: NavHostController){
                    icon = { Icon(imageVector = it.icon, contentDescription = null) },
                    onClick = {
                       navController.navigate(it.route){
+                          popUpTo(Screens.NowPlaying.route) { inclusive = false }
                           launchSingleTop=true
                       }
                    }

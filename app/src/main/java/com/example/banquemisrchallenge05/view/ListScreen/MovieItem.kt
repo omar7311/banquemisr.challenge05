@@ -1,5 +1,7 @@
 package com.example.banquemisrchallenge05.view.ListScreen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,8 +33,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.banquemisrchallenge05.model.remote.Movie
+import com.example.banquemisrchallenge05.view.DetailsScreen.releaseData
 import com.example.banquemisrchallenge05.view.ui.navigation.Screens
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MovieItem(movie:Movie,navController: NavHostController){
     val painter= rememberAsyncImagePainter(
@@ -40,16 +44,22 @@ fun MovieItem(movie:Movie,navController: NavHostController){
     )
     Card(modifier =Modifier.width(200.dp).height(315.dp).padding(4.dp).clickable {
         navController.navigate("${Screens.MovieDetails.route}/${movie.id}")
-    }, shape = RoundedCornerShape(10.dp),
-
+    }
+        , shape = RoundedCornerShape(10.dp), elevation = CardDefaults.cardElevation(12.dp)
     )  {
        Image(painter = painter,contentDescription = null, contentScale = ContentScale.Crop,
            modifier = Modifier.fillMaxWidth().height(250.dp))
-        Text(text = movie.title, fontSize = 18.sp , fontWeight = FontWeight.Bold, maxLines = 1 ,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp))
-        Text(text = movie.release_date, fontSize = 16.sp,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp))
+        Column(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
+            Text(
+                text = movie.title, fontSize = 18.sp, fontWeight = FontWeight.Bold, maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 2.dp)
+            )
+            Text(
+                text = releaseData(movie.release_date), fontSize = 16.sp,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 2.dp)
+            )
+        }
     }
 }
 @Preview(showSystemUi = true)
