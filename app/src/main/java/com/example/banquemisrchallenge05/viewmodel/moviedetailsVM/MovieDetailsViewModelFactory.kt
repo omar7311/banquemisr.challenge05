@@ -1,4 +1,4 @@
-package com.example.banquemisrchallenge05.viewmodel.movieslistVM
+package com.example.banquemisrchallenge05.viewmodel.moviedetailsVM
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

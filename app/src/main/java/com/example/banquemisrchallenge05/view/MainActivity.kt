@@ -13,19 +13,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.banquemisrchallenge05.R
+import com.example.banquemisrchallenge05.model.NetworkObserver
 import com.example.banquemisrchallenge05.view.ui.navigation.NavGraph
 import com.example.banquemisrchallenge05.view.ui.theme.Banquemisrchallenge05Theme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var networkObserver: NetworkObserver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        networkObserver = NetworkObserver(applicationContext)
+        networkObserver.register()
         enableEdgeToEdge()
         setContent {
             Banquemisrchallenge05Theme {
                 val controller= rememberNavController()
-                NavGraph(controller,getString(R.string.api_key))
+                NavGraph(networkObserver,controller,getString(R.string.api_key),this)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        networkObserver.unRegister()
     }
 }
 
